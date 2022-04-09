@@ -5,19 +5,24 @@
     <projectFile profileName="IIS Express">Notes.WebApi/Notes.WebApi.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b05d6772-70b4-451f-a3b0-51645f47b81c" name="Changes" comment="v1.2.0. Added automapper for transform objects">
-      <change afterPath="$PROJECT_DIR$/Notes.Application/Notes/Commands/CreateNote/CreateNoteCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notes.Application/Notes/Commands/CreateNote/CreateNoteCommandHandler.cs" afterDir="false" />
+    <list default="true" id="b05d6772-70b4-451f-a3b0-51645f47b81c" name="Changes" comment="v1.2.1. Added Create Note handler, create note Dto">
+      <change afterPath="$PROJECT_DIR$/Notes.Application/Common/Exceptions/NotFoundException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notes.Application/Notes/Commands/UpdateNote/UpdateNoteCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notes.Application/Notes/Commands/UpdateNote/UpdateNoteCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rest-api.NET/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rest-api.NET/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/Notes.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.Application/Notes.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/Notes.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.Domain/Notes.Domain.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/Notes.Persistence.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.Persistence/Notes.Persistence.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/Notes.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.WebApi/Notes.WebApi.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4f75fb400ddfc25eb6bc7837010c479d0883e9b6c8230974c8fce951aa7/Type.cs" root0="SKIP_HIGHLIGHTING" />
@@ -86,7 +91,7 @@
       <workItem from="1649420263697" duration="838000" />
       <workItem from="1649437523749" duration="2000" />
       <workItem from="1649511353541" duration="3000" />
-      <workItem from="1649527792501" duration="1902000" />
+      <workItem from="1649527792501" duration="3198000" />
     </task>
     <task id="LOCAL-00001" summary="v 1.0.0. Basic initialization">
       <created>1649421004797</created>
@@ -109,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649527848081</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="v1.2.1. Added Create Note handler, create note Dto">
+      <created>1649530468728</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1649530468728</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +159,7 @@
     <MESSAGE value="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize" />
     <MESSAGE value="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize. Deleted obj folders" />
     <MESSAGE value="v1.2.0. Added automapper for transform objects" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.2.0. Added automapper for transform objects" />
+    <MESSAGE value="v1.2.1. Added Create Note handler, create note Dto" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2.1. Added Create Note handler, create note Dto" />
   </component>
 </project>
