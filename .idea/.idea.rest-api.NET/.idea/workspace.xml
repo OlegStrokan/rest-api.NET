@@ -5,15 +5,14 @@
     <projectFile profileName="IIS Express">Notes.WebApi/Notes.WebApi.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b05d6772-70b4-451f-a3b0-51645f47b81c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Notes.Application/Common/Mappings/AssemblyMappingProfile.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notes.Application/Common/Mappings/IMapWith.cs" afterDir="false" />
+    <list default="true" id="b05d6772-70b4-451f-a3b0-51645f47b81c" name="Changes" comment="v1.2.0. Added automapper for transform objects">
+      <change afterPath="$PROJECT_DIR$/Notes.Application/Notes/Commands/CreateNote/CreateNoteCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notes.Application/Notes/Commands/CreateNote/CreateNoteCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rest-api.NET/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rest-api.NET/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes.Application/Notes.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.Application/Notes.Application.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes.Domain/Notes.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.Domain/Notes.Domain.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes.Persistence/Notes.Persistence.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.Persistence/Notes.Persistence.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes.WebApi/Notes.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.WebApi/Notes.WebApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.WebApi/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +86,7 @@
       <workItem from="1649420263697" duration="838000" />
       <workItem from="1649437523749" duration="2000" />
       <workItem from="1649511353541" duration="3000" />
+      <workItem from="1649527792501" duration="1902000" />
     </task>
     <task id="LOCAL-00001" summary="v 1.0.0. Basic initialization">
       <created>1649421004797</created>
@@ -102,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649435798053</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="v1.2.0. Added automapper for transform objects">
+      <created>1649527848081</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1649527848081</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +146,7 @@
     <MESSAGE value="v 1.0.0. Basic initialization" />
     <MESSAGE value="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize" />
     <MESSAGE value="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize. Deleted obj folders" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize. Deleted obj folders" />
+    <MESSAGE value="v1.2.0. Added automapper for transform objects" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.2.0. Added automapper for transform objects" />
   </component>
 </project>
