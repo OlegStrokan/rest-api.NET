@@ -6,87 +6,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b05d6772-70b4-451f-a3b0-51645f47b81c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Notes.Application/Interfaces/INotesDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notes.Persistence/DbInitializer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notes.Persistence/EntityTypeConfiguration/NoteConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notes.Persistence/NotesDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notes.Application/Common/Mappings/AssemblyMappingProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Notes.Application/Common/Mappings/IMapWith.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rest-api.NET/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rest-api.NET/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes.Application/Notes.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.Application/Notes.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Debug/net6.0/Notes.Application.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Debug/net6.0/Notes.Application.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Debug/net6.0/Notes.Application.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Debug/net6.0/Notes.Application.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Debug/net6.0/Notes.Application.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Debug/net6.0/Notes.Application.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Notes.Application.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Notes.Application.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/Notes.Application.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/project.packagespec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Application/obj/rider.project.restore.info" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes.Domain/Notes.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.Domain/Notes.Domain.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Debug/net6.0/Notes.Domain.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Debug/net6.0/Notes.Domain.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Debug/net6.0/Notes.Domain.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Debug/net6.0/Notes.Domain.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Debug/net6.0/Notes.Domain.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Debug/net6.0/Notes.Domain.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Notes.Domain.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Notes.Domain.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/Notes.Domain.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/project.packagespec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Domain/obj/rider.project.restore.info" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes.Persistence/Notes.Persistence.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.Persistence/Notes.Persistence.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Debug/net6.0/Notes.Persistence.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Debug/net6.0/Notes.Persistence.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Debug/net6.0/Notes.Persistence.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Debug/net6.0/Notes.Persistence.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Debug/net6.0/Notes.Persistence.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Debug/net6.0/Notes.Persistence.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Notes.Persistence.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Notes.Persistence.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/Notes.Persistence.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/project.packagespec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.Persistence/obj/rider.project.restore.info" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Notes.WebApi/Notes.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.WebApi/Notes.WebApi.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.MvcApplicationPartsAssemblyInfo.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/Notes.WebApi.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/apphost" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/ref/Notes.WebApi.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/refint/Notes.WebApi.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Debug/net6.0/staticwebassets.build.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Notes.WebApi.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Notes.WebApi.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/Notes.WebApi.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/project.packagespec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/rider.project.restore.info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.WebApi/obj/staticwebassets.pack.sentinel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notes.WebApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.WebApi/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4f75fb400ddfc25eb6bc7837010c479d0883e9b6c8230974c8fce951aa7/Type.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6df736bd11c4ada93dff998ad2e3bf6e9ade3479a8831d32bb8bfcc4f6ebd1/Assembly.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -149,6 +85,8 @@
       <option name="presentableId" value="Default" />
       <updated>1649420262332</updated>
       <workItem from="1649420263697" duration="838000" />
+      <workItem from="1649437523749" duration="2000" />
+      <workItem from="1649511353541" duration="3000" />
     </task>
     <task id="LOCAL-00001" summary="v 1.0.0. Basic initialization">
       <created>1649421004797</created>
@@ -157,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649421004797</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize. Deleted obj folders">
+      <created>1649435798053</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1649435798053</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +138,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="v 1.0.0. Basic initialization" />
     <MESSAGE value="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize" />
+    <MESSAGE value="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize. Deleted obj folders" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.1.0. Installed entity framework with sqlite. Added basic classes/interfaces for database initialize. Deleted obj folders" />
   </component>
 </project>
