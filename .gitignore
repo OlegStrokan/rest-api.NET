@@ -1,15 +1,2 @@
-Notes.Application/bin
-Notes.Application/obj
-
-Notes.Domain/bin
-Notes.Domain/obj
-
-Notes.Persistence/bin
-Notes.Persistence/obj
-
-Notes.WebApi/bin
-Notes.WebApi/obj
-
 .idea
-
-
+.wwwroot
