@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using mvc.NET.Dtos;
 using mvc.NET.Models;
 using mvc.NET.Repositories;
 
@@ -21,15 +23,16 @@ namespace mvc.NET.Controllers
 
         // GET /items
         [HttpGet]
-        public IEnumerable<Item> GetItems()
+        public IEnumerable<ItemDto> GetItems()
         {
-            return repository.GetItems();
+            // select - аналогично как в sql
+            return repository.GetItems().Select(item => item.AsDto());
           
         }
 
         // GET /items/id
         [HttpGet("{id}")]
-        public ActionResult<Item> GetItem(Guid id)
+        public ActionResult<ItemDto> GetItem(Guid id)
         {
             var item = repository.GetItem(id);
 
@@ -38,7 +41,7 @@ namespace mvc.NET.Controllers
                 return NotFound();
             }
 
-            return Ok(item);
+            return Ok(item.AsDto());
         }
 
     }
