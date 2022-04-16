@@ -8,7 +8,6 @@ using mvc.NET.Repositories;
 
 namespace mvc.NET.Controllers
 {
-    
     [ApiController]
     [Route("items")]
     public class ItemsController : ControllerBase
@@ -27,7 +26,6 @@ namespace mvc.NET.Controllers
         {
             // select - аналогично как в sql
             return repository.GetItems().Select(item => item.AsDto());
-          
         }
 
         // GET /items/id
@@ -44,5 +42,19 @@ namespace mvc.NET.Controllers
             return Ok(item.AsDto());
         }
 
+        [HttpPost]
+        public ActionResult<ItemDto> CreateItem(CreateItemDto dto)
+        {
+            Item item = new()
+            {
+                Id = Guid.NewGuid(),
+                Name = dto.Name,
+                Price = dto.Price,
+                CreateDate = DateTimeOffset.UtcNow,
+            };
+            repository.CreateItem(item);
+
+            return CreatedAtAction(nameof(GetItem), new {id = item.Id}, item.AsDto());
+        }
     }
 }

@@ -19,6 +19,11 @@ namespace mvc.NET.Repositories
             return items;
         }
 
+        public void CreateItem(Item item)
+        {
+            items.Add(item);
+        }
+
         public Item GetItem(Guid id)
         {
             return items.Where(item => item.Id == id).SingleOrDefault();
