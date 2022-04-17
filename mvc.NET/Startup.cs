@@ -9,7 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Driver;
 using mvc.NET.Repositories;
+using mvc.NET.Settings;
 
 namespace mvc.NET
 {
@@ -23,19 +28,29 @@ namespace mvc.NET
         // подключения env переменных
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+
         // подключения всех сервисов
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            // для правильного взаимодействия с guid и date
+            BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
+            
+            services.AddSingleton<IMongoClient>(serviceProvider =>
+            {
+                var setting = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                return new MongoClient(setting.ConnectionString);
+            });
             services.AddControllersWithViews();
-            services.AddSingleton<IItemsRepository, InMemItemsRepository>();
+            
+            // интерфейс сервиса и сам сервис
+            services.AddSingleton<IItemsRepository, MongoDbItemsRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Catalog", Version = "v0.0.1"});
             });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
         // pipeline - подключения доп функционала - jwt, swagger, static файлы
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
