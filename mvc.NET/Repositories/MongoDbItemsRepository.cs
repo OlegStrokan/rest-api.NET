@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using mvc.NET.Models;
 
@@ -14,6 +15,10 @@ namespace mvc.NET.Repositories
 
         // создаем коллекцию, которую инициализируем в конструкторе
         private readonly IMongoCollection<Item> itemsCollection;
+        
+        
+        private readonly FilterDefinitionBuilder<Item> filterBuilder = Builders<Item>.Filter;
+        
 
         public MongoDbItemsRepository(IMongoClient mongoClient)
         {
@@ -22,12 +27,13 @@ namespace mvc.NET.Repositories
         }
         public Item GetItem(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(item => item.Id, id);
+            return itemsCollection.Find(filter).SingleOrDefault();
         }
 
         public IEnumerable<Item> GetItems()
         {
-            throw new NotImplementedException();
+            return itemsCollection.Find(new BsonDocument()).ToList();
         }
 
         public void CreateItem(Item item)
@@ -37,12 +43,14 @@ namespace mvc.NET.Repositories
 
         public void UpdateItem(Item item)
         {
-            
+            var filter = filterBuilder.Eq(existingItem => existingItem.Id, item.Id);
+            itemsCollection.ReplaceOne(filter, item);
         }
 
         public void DeleteItem(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(item => item.Id, id);
+            itemsCollection.DeleteOne(filter);
         }
     }
 }
