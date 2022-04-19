@@ -1,4 +1,6 @@
+using System;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,11 +32,12 @@ namespace mvc.NET
             
             // для правильного взаимодействия с guid и date
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
-            
+            BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+            var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+
             services.AddSingleton<IMongoClient>(serviceProvider =>
             {
-                var setting = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-                return new MongoClient(setting.ConnectionString);
+                return new MongoClient(mongoDbSettings.ConnectionString);
             });
             services.AddControllersWithViews();
             
@@ -50,6 +53,14 @@ namespace mvc.NET
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Catalog", Version = "v0.0.1"});
             });
+
+            services.AddHealthChecks()
+                // если мы не можем подключиться к базе данных в течении 3х секунд, endpoint health будет выдавать ошибку
+                .AddMongoDb(
+                    mongoDbSettings.ConnectionString,
+                    name: "mongodb",
+                    timeout: TimeSpan.FromSeconds(3),
+                    tags: new[] { "ready", "live" });
         }
         
         // pipeline - подключения доп функционала - jwt, swagger, static файлы
@@ -77,9 +88,15 @@ namespace mvc.NET
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions
+                {
+                    Predicate = (check) => check.Tags.Contains("ready")
+                });
+                endpoints.MapHealthChecks("/health/live", new HealthCheckOptions
+                {
+                   Predicate = (_) => false
+                });
             });
         }
     }
