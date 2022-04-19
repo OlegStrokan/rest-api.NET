@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using mvc.NET.Models;
 
 namespace mvc.NET.Repositories;
 
 public interface IItemsRepository
 {
-    Item GetItem(Guid id);
+    Task<Item> GetItemAsync(Guid id);
 
-    IEnumerable<Item> GetItems();
+    Task<IEnumerable<Item>> GetItemsAsync();
 
-    void CreateItem(Item item);
-    void UpdateItem(Item item);
-    void DeleteItem(Guid id);
+    Task CreateItemAsync(Item item);
+    Task UpdateItemAsync(Item item);
+    Task DeleteItemAsync(Guid id);
 }

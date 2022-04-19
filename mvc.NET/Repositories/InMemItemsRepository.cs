@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using mvc.NET.Models;
 
 namespace mvc.NET.Repositories
@@ -14,32 +15,36 @@ namespace mvc.NET.Repositories
             new Item {Id = Guid.NewGuid(), Name = "Bronze Shield", Price = 18, CreateDate = DateTimeOffset.UtcNow},
         };
 
-        public IEnumerable<Item> GetItems()
+        public async Task<IEnumerable<Item>> GetItemsAsync()
         {
-            return items;
+            return await Task.FromResult(items);
         }
 
-        public void CreateItem(Item item)
+        public async Task<Item> GetItemAsync(Guid id)
+        {
+            var item =  items.SingleOrDefault(item => item.Id == id);
+            return await Task.FromResult(item);
+        }
+        
+        public async Task CreateItemAsync(Item item)
         {
             items.Add(item);
+            await Task.CompletedTask;
         }
+        
 
-        public Item GetItem(Guid id)
-        {
-            return items.Where(item => item.Id == id).SingleOrDefault();
-        }
-
-        public void UpdateItem(Item item)
+        public async Task UpdateItemAsync(Item item)
         {
             var index = items.FindIndex(existingItem => existingItem.Id == item.Id);
-            items[index] = item;
+             items[index] = item;
+             await Task.CompletedTask;
         }
 
-        public void DeleteItem(Guid id)
+        public async Task DeleteItemAsync(Guid id)
         {
             var index = items.FindIndex(existingItem => existingItem.Id == id);
-
             items.RemoveAt(index);
+            await Task.CompletedTask;
         }
     }
     

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using mvc.NET.Dtos;
 using mvc.NET.Models;
@@ -22,17 +23,18 @@ namespace mvc.NET.Controllers
 
         // GET /items
         [HttpGet]
-        public IEnumerable<ItemDto> GetItems()
-        {
+        public async Task<IEnumerable<ItemDto>> GetItemsAsync()
+        { 
             // select - аналогично как в sql
-            return repository.GetItems().Select(item => item.AsDto());
+            return (await repository.GetItemsAsync())
+                .Select(item => item.AsDto());
         }
 
         // GET /items/id
         [HttpGet("{id}")]
-        public ActionResult<ItemDto> GetItem(Guid id)
+        public async Task<ActionResult<ItemDto>> GetItemAsync(Guid id)
         {
-            var item = repository.GetItem(id);
+            var item = await repository.GetItemAsync(id);
 
             if (item is null)
             {
@@ -43,7 +45,7 @@ namespace mvc.NET.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ItemDto> CreateItem(CreateItemDto dto)
+        public async Task<ActionResult<ItemDto>> CreateItemAsync(CreateItemDto dto)
         {
             Item item = new()
             {
@@ -52,17 +54,17 @@ namespace mvc.NET.Controllers
                 Price = dto.Price,
                 CreateDate = DateTimeOffset.UtcNow,
             };
-            repository.CreateItem(item);
+            await repository.CreateItemAsync(item);
 
-            return CreatedAtAction(nameof(GetItem), new {id = item.Id}, item.AsDto());
+            return CreatedAtAction("GetItem", new {id = item.Id}, item.AsDto());
         }
 
 
         [HttpPut("{id}")]
         // ActionResult без дженерик типа = void;
-        public ActionResult UpdateItem(Guid id, UpdateItemDto dto)
+        public async Task<ActionResult> UpdateItem(Guid id, UpdateItemDto dto)
         {
-            var existingItem = repository.GetItem(id);
+            var existingItem = await repository.GetItemAsync(id);
 
             if (existingItem is null)
             {
@@ -76,15 +78,15 @@ namespace mvc.NET.Controllers
                 Price = dto.Price
             };
 
-            repository.UpdateItem(updatedItem);
+            await repository.UpdateItemAsync(updatedItem);
 
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteItem(Guid id)
+        public async Task<ActionResult> DeleteItem(Guid id)
         {
-            var existingItem = repository.GetItem(id);
+            var existingItem = await repository.GetItemAsync(id);
 
             if (existingItem is null)
             {
@@ -92,7 +94,7 @@ namespace mvc.NET.Controllers
             }
 
 
-            repository.DeleteItem(id);
+            await repository.DeleteItemAsync(id);
             
             return NoContent();
         }
