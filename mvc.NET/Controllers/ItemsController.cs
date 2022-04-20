@@ -15,13 +15,13 @@ namespace mvc.NET.Controllers
     {
         private readonly IItemsRepository repository;
 
-        // dependency injections
+        
         public ItemsController(IItemsRepository repository)
         {
             this.repository = repository;
         }
 
-        // GET /items
+
         [HttpGet]
         public async Task<IEnumerable<ItemDto>> GetItemsAsync()
         { 
@@ -29,8 +29,8 @@ namespace mvc.NET.Controllers
             return (await repository.GetItemsAsync())
                 .Select(item => item.AsDto());
         }
-
-        // GET /items/id
+        
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<ItemDto>> GetItemAsync(Guid id)
         {

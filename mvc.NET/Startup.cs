@@ -1,7 +1,11 @@
 using System;
+using System.Linq;
+using System.Net.Mime;
+using System.Text.Json;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,7 +33,6 @@ namespace mvc.NET
         // подключения всех сервисов
         public void ConfigureServices(IServiceCollection services)
         {
-            
             // для правильного взаимодействия с guid и date
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
             BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
@@ -40,15 +43,12 @@ namespace mvc.NET
                 return new MongoClient(mongoDbSettings.ConnectionString);
             });
             services.AddControllersWithViews();
-            
+
             // интерфейс сервиса и сам сервис
             services.AddSingleton<IItemsRepository, MongoDbItemsRepository>();
 
-            services.AddControllers(option =>
-            {
-                option.SuppressAsyncSuffixInActionNames = false;
-            });
-            
+            services.AddControllers(option => { option.SuppressAsyncSuffixInActionNames = false; });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Catalog", Version = "v0.0.1"});
@@ -60,9 +60,9 @@ namespace mvc.NET
                     mongoDbSettings.ConnectionString,
                     name: "mongodb",
                     timeout: TimeSpan.FromSeconds(3),
-                    tags: new[] { "ready", "live" });
+                    tags: new[] {"ready", "live"});
         }
-        
+
         // pipeline - подключения доп функционала - jwt, swagger, static файлы
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -78,6 +78,7 @@ namespace mvc.NET
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection()
                 ;
             app.UseStaticFiles();
@@ -91,11 +92,28 @@ namespace mvc.NET
                 endpoints.MapControllers();
                 endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions
                 {
-                    Predicate = (check) => check.Tags.Contains("ready")
+                    Predicate = (check) => check.Tags.Contains("ready"),
+                    ResponseWriter = async (context, report) =>
+                    {
+                        var result = JsonSerializer.Serialize(
+                            new
+                            {
+                                status = report.Status.ToString(),
+                                checks = report.Entries.Select(entry => new
+                                {
+                                    name = entry.Key,
+                                    status = entry.Value.Status.ToString(),
+                                    exception = entry.Value.Exception != null ? entry.Value.Exception.Message : "none",
+                                    duration = entry.Value.Duration.ToString()
+                                })
+                            });
+                        context.Response.ContentType = MediaTypeNames.Application.Json;
+                        await context.Response.WriteAsync(result);
+                    }
                 });
                 endpoints.MapHealthChecks("/health/live", new HealthCheckOptions
                 {
-                   Predicate = (_) => false
+                    Predicate = (_) => false
                 });
             });
         }
