@@ -79,8 +79,12 @@ namespace mvc.NET
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection()
-                ;
+            // если мы в development режиме, то разрешаем редирект на https
+            if (env.IsDevelopment())
+            {
+                app.UseHttpsRedirection();
+            }
+
             app.UseStaticFiles();
 
             app.UseRouting();
