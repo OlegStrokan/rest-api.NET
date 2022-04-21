@@ -8,11 +8,11 @@ using mvc.NET.Models;
 namespace mvc.NET.Repositories
 {
 
-    public class PostService : IPostsService
+    public class PostsService : IPostsService
     {
 
         private const string databasename = "catalog";
-        private const string collectionName = "items";
+        private const string collectionName = "posts";
 
         // создаем коллекцию, которую инициализируем в конструкторе
         private readonly IMongoCollection<Post> postsCollection;
@@ -21,7 +21,7 @@ namespace mvc.NET.Repositories
         private readonly FilterDefinitionBuilder<Post> filterBuilder = Builders<Post>.Filter;
         
 
-        public PostService(IMongoClient mongoClient)
+        public PostsService(IMongoClient mongoClient)
         {
             IMongoDatabase database = mongoClient.GetDatabase(databasename);
             postsCollection = database.GetCollection<Post>(collectionName);

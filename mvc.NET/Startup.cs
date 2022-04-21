@@ -45,7 +45,7 @@ namespace mvc.NET
             services.AddControllersWithViews();
 
             // интерфейс сервиса и сам сервис
-            services.AddSingleton<IPostsService, PostService>();
+            services.AddSingleton<IPostsService, PostsService>();
 
             services.AddControllers(option => { option.SuppressAsyncSuffixInActionNames = false; });
 
