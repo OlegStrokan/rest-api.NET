@@ -45,7 +45,7 @@ namespace mvc.NET
             services.AddControllersWithViews();
 
             // интерфейс сервиса и сам сервис
-            services.AddSingleton<IItemsRepository, MongoDbItemsRepository>();
+            services.AddSingleton<IPostsService, PostService>();
 
             services.AddControllers(option => { option.SuppressAsyncSuffixInActionNames = false; });
 

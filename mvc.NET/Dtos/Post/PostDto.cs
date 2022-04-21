@@ -3,12 +3,13 @@ using System;
 namespace mvc.NET.Dtos
 {
 
-    public record ItemDto 
+    public record PostDto 
     {
         public Guid Id { get; init; }
-        public string Name { get; init; }
-        public decimal Price { get; init; }
+        public string Title { get; init; }
+        public string Content { get; init; }
         public DateTimeOffset CreateDate { get; init; }
+
 
     }
 

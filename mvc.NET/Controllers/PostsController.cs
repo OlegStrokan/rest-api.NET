@@ -4,37 +4,38 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using mvc.NET.Dtos;
+using mvc.NET.Dtos.Post;
 using mvc.NET.Models;
 using mvc.NET.Repositories;
 
 namespace mvc.NET.Controllers
 {
     [ApiController]
-    [Route("items")]
-    public class ItemsController : ControllerBase
+    [Route("posts")]
+    public class PostsController : ControllerBase
     {
-        private readonly IItemsRepository repository;
+        private readonly IPostsService _service;
 
         
-        public ItemsController(IItemsRepository repository)
+        public PostsController(IPostsService service)
         {
-            this.repository = repository;
+            this._service = service;
         }
 
 
         [HttpGet]
-        public async Task<IEnumerable<ItemDto>> GetItemsAsync()
+        public async Task<IEnumerable<PostDto>> GetItemsAsync()
         { 
             // select - аналогично как в sql
-            return (await repository.GetItemsAsync())
+            return (await _service.GetPostsAsync())
                 .Select(item => item.AsDto());
         }
         
         
         [HttpGet("{id}")]
-        public async Task<ActionResult<ItemDto>> GetItemAsync(Guid id)
+        public async Task<ActionResult<PostDto>> GetItemAsync(Guid id)
         {
-            var item = await repository.GetItemAsync(id);
+            var item = await _service.GetPostAsync(id);
 
             if (item is null)
             {
@@ -45,26 +46,26 @@ namespace mvc.NET.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ItemDto>> CreateItemAsync(CreateItemDto dto)
+        public async Task<ActionResult<PostDto>> CreateItemAsync(CreatePostDto dto)
         {
-            Item item = new()
+            Post post = new()
             {
                 Id = Guid.NewGuid(),
-                Name = dto.Name,
-                Price = dto.Price,
+                Title = dto.Title,
+                Content = dto.Content,
                 CreateDate = DateTimeOffset.UtcNow,
             };
-            await repository.CreateItemAsync(item);
+            await _service.CreatePostAsync(post);
 
-            return CreatedAtAction("GetItem", new {id = item.Id}, item.AsDto());
+            return CreatedAtAction("GetItem", new {id = post.Id}, post.AsDto());
         }
 
 
         [HttpPut("{id}")]
         // ActionResult без дженерик типа = void;
-        public async Task<ActionResult> UpdateItem(Guid id, UpdateItemDto dto)
+        public async Task<ActionResult> UpdateItem(Guid id, UpdatePostDto dto)
         {
-            var existingItem = await repository.GetItemAsync(id);
+            var existingItem = await _service.GetPostAsync(id);
 
             if (existingItem is null)
             {
@@ -72,13 +73,13 @@ namespace mvc.NET.Controllers
             }
 
             // with
-            Item updatedItem = existingItem with
+            Post updatedPost = existingItem with
             {
-                Name = dto.Name,
-                Price = dto.Price
+                Title = dto.Title,
+                Content = dto.Content
             };
 
-            await repository.UpdateItemAsync(updatedItem);
+            await _service.UpdatePostAsync(updatedPost);
 
             return NoContent();
         }
@@ -86,7 +87,7 @@ namespace mvc.NET.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteItem(Guid id)
         {
-            var existingItem = await repository.GetItemAsync(id);
+            var existingItem = await _service.GetPostAsync(id);
 
             if (existingItem is null)
             {
@@ -94,7 +95,7 @@ namespace mvc.NET.Controllers
             }
 
 
-            await repository.DeleteItemAsync(id);
+            await _service.DeletePostAsync(id);
             
             return NoContent();
         }

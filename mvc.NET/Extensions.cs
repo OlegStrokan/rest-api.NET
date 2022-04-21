@@ -7,14 +7,14 @@ namespace mvc.NET
     public static class Extensions
     {
        // аргументом принимает item по контексту к которому вызван метод
-        public static ItemDto AsDto(this Item item)
+        public static PostDto AsDto(this Post post)
         {
-            return new ItemDto
+            return new PostDto
             {
-                Id = item.Id,
-                Name = item.Name,
-                Price = item.Price,
-                CreateDate = item.CreateDate
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                CreateDate = post.CreateDate
             };
         }
     }
