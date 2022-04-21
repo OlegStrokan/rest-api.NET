@@ -1,5 +1,4 @@
-**/.classpath
-**/.dockerignore
+﻿**/.dockerignore
 **/.env
 **/.git
 **/.gitignore
@@ -8,9 +7,10 @@
 **/.toolstarget
 **/.vs
 **/.vscode
-**/.*.*proj.user
-**/.*.dbml
-**/.*.jfm
+**/.idea
+**/*.*proj.user
+**/*.dbmdl
+**/*.jfm
 **/azds.yaml
 **/bin
 **/charts
@@ -19,6 +19,7 @@
 **/node_modules
 **/npm-debug.log
 **/obj
-**/serrets.dev.yaml
+**/secrets.dev.yaml
 **/values.dev.yaml
+LICENSE
 README.md
