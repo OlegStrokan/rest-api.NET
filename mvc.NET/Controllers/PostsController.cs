@@ -8,96 +8,95 @@ using mvc.NET.Dtos.Post;
 using mvc.NET.Models;
 using mvc.NET.Repositories;
 
-namespace mvc.NET.Controllers
+namespace mvc.NET.Controllers;
+
+[ApiController]
+[Route("posts")]
+public class PostsController : ControllerBase
 {
-    [ApiController]
-    [Route("posts")]
-    public class PostsController : ControllerBase
+    private readonly IPostsService _service;
+
+
+    public PostsController(IPostsService service)
     {
-        private readonly IPostsService _service;
+        this._service = service;
+    }
 
-        
-        public PostsController(IPostsService service)
+
+    [HttpGet]
+    public async Task<IEnumerable<PostDto>> GetPostsAsync()
+    {
+        // select - аналогично как в sql
+        return (await _service.GetPostsAsync())
+            .Select(item => item.AsPostDto());
+    }
+
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<PostDto>> GetPostAsync(Guid id)
+    {
+        var item = await _service.GetPostAsync(id);
+
+        if (item is null)
         {
-            this._service = service;
+            return NotFound();
         }
 
+        return Ok(item.AsPostDto());
+    }
 
-        [HttpGet]
-        public async Task<IEnumerable<PostDto>> GetItemsAsync()
-        { 
-            // select - аналогично как в sql
-            return (await _service.GetPostsAsync())
-                .Select(item => item.AsDto());
-        }
-        
-        
-        [HttpGet("{id}")]
-        public async Task<ActionResult<PostDto>> GetItemAsync(Guid id)
+    [HttpPost]
+    public async Task<ActionResult<PostDto>> CreatePostAsync(CreatePostDto dto)
+    {
+        Post post = new()
         {
-            var item = await _service.GetPostAsync(id);
+            Id = Guid.NewGuid(),
+            Title = dto.Title,
+            Content = dto.Content,
+            CreateDate = DateTimeOffset.UtcNow,
+        };
+        await _service.CreatePostAsync(post);
 
-            if (item is null)
-            {
-                return NotFound();
-            }
+        return CreatedAtAction("GetPost", new {id = post.Id}, post.AsPostDto());
+    }
 
-            return Ok(item.AsDto());
-        }
 
-        [HttpPost]
-        public async Task<ActionResult<PostDto>> CreateItemAsync(CreatePostDto dto)
+    [HttpPut("{id}")]
+    // ActionResult без дженерик типа = void;
+    public async Task<ActionResult> UpdatePost(Guid id, UpdatePostDto dto)
+    {
+        var existingPost = await _service.GetPostAsync(id);
+
+        if (existingPost is null)
         {
-            Post post = new()
-            {
-                Id = Guid.NewGuid(),
-                Title = dto.Title,
-                Content = dto.Content,
-                CreateDate = DateTimeOffset.UtcNow,
-            };
-            await _service.CreatePostAsync(post);
-
-            return CreatedAtAction("GetItem", new {id = post.Id}, post.AsDto());
+            return NotFound();
         }
 
-
-        [HttpPut("{id}")]
-        // ActionResult без дженерик типа = void;
-        public async Task<ActionResult> UpdateItem(Guid id, UpdatePostDto dto)
+        // with
+        Post updatedPost = existingPost with
         {
-            var existingItem = await _service.GetPostAsync(id);
+            Title = dto.Title,
+            Content = dto.Content
+        };
 
-            if (existingItem is null)
-            {
-                return NotFound();
-            }
+        await _service.UpdatePostAsync(updatedPost);
 
-            // with
-            Post updatedPost = existingItem with
-            {
-                Title = dto.Title,
-                Content = dto.Content
-            };
+        return NoContent();
+    }
 
-            await _service.UpdatePostAsync(updatedPost);
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeletePost(Guid id)
+    {
+        var existingPost = await _service.GetPostAsync(id);
 
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteItem(Guid id)
+        if (existingPost is null)
         {
-            var existingItem = await _service.GetPostAsync(id);
-
-            if (existingItem is null)
-            {
-                return NotFound();
-            }
-
-
-            await _service.DeletePostAsync(id);
-            
-            return NoContent();
+            return NotFound();
         }
+
+
+        await _service.DeletePostAsync(id);
+
+        return NoContent();
     }
 }
