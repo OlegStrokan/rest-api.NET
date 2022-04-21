@@ -6,10 +6,10 @@ namespace mvc.NET.Dtos.Post
     public record CreatePostDto
     {
         [Required]
-        [StringLength(20)]
+        [MaxLength(20), MinLength(5)]
         public string Title { get; init; }
         [Required]
-        [StringLength(200)]
+        [MaxLength(200), MinLength(10)]
         public string Content { get; init; }
     }
 }
